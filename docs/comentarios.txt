@@ -16,7 +16,7 @@ Tipos de Documentação:
 Como faremos aqui no curso?
 - Realizar testes direto no Swagger (quase dizer que é manual)
 - Realizar testes via Postman (quase dizer que é por configuração)
-- Realizar testes via Playeright (por programação)
+- Realizar testes via Playwright (por programação)
 
 Operações básicas de uma entidade
 

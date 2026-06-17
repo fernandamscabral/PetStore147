@@ -1,0 +1,20 @@
+{
+  "name": "Spike",
+  "photoUrls": [],
+  "id": 581681101,
+  "category": {
+    "id": 1,
+    "name": "cachorro"
+  },
+  "tags": [
+    {
+      "id": 1,
+      "name": "vacinado"
+    },
+    {
+      "id": 9,
+      "name": "vermifugado"
+    }
+  ],
+  "status": "available"
+}
