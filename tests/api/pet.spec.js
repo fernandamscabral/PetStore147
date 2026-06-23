@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import pet from '../../data/json/pet.json';
 
 const petAlterado = pet
+let token = ''
 
 test.describe.serial('Testes positivos da entidade Pet', () => {
     test('POST pet com sucesso', async ({ request }) => {
@@ -47,8 +48,33 @@ test.describe.serial('Testes positivos da entidade Pet', () => {
         expect(await response.json()).toEqual(petAlterado)
     })
 
+    test('Login user com sucesso', async ({ request }) => {
+        const response = await request.get('user/login', {
+            params: {
+                username: 'snoopy',
+                password: 12345
+            }
+        })
+
+        expect(response.status()).toEqual(200)
+        console.log(await response.json())
+        const responseBody = await response.json() // logged in user
+        expect(responseBody.message).toContain('logged in user session:')
+
+        let message = responseBody.message.split(':') // ['logged in user...', '178.']
+        console.log(message)
+        token = message[1]
+        console.log(token)
+    })
+
     test('DELETE pet com sucesso', async ({ request }) => {
-        const response = await request.delete(`pet/${pet.id}`)
+         // Tipos de token Basic e Bearer (mais comuns)
+
+        const response = await request.delete(`pet/${petAlterado.id}`, {
+            headers: {
+                apiToken: `Bearer ${token}`
+            }
+        })
 
         expect(response.status()).toBe(200)
         const responseJson = await response.json()
